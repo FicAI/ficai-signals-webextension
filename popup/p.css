@@ -8,7 +8,10 @@ body.loggedin #loginform {
 body:not(.loggedin) #logoutform {
     display: none;
 }
-body:not(.loggedin) #main {
+body:not(.loggedin) #list {
+    display: none;
+}
+body:not(.loggedin) #new {
     display: none;
 }
 

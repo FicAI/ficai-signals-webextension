@@ -8,7 +8,8 @@ const CookieNameAndUrl = {
 
 const loginform = document.getElementById('loginform');
 const logoutform = document.getElementById('logoutform');
-const main = document.getElementById('main');
+const list = document.getElementById('list');
+const newform = document.getElementById('new');
 
 let tabUrl;
 
@@ -84,12 +85,16 @@ function renderTag(tag) {
 function render(data) {
   data.tags
     .map(renderTag)
-    .forEach(tag => main.append(tag));
+    .forEach(tag => list.append(tag));
 }
 
 function reload() {
-  main.innerHTML = '';
+  list.innerHTML = '';
   loadData().then(render);
+}
+
+function add() {
+  patch({add: [newform.tag.value]}).then(reload);
 }
 
 function onLoggedIn() {
@@ -123,6 +128,7 @@ function logOut() {
 
 loginform.btn.addEventListener('click', logIn);
 logoutform.btn.addEventListener('click', logOut);
+newform.btn.addEventListener('click', add);
 
 browser.cookies.get(CookieNameAndUrl).then(
   cookie => {
