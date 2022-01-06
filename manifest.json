@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "version": "0.1",
+  "name": "Fic.AI",
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "*://localhost/*",
+    "activeTab",
+    "cookies"
+  ],
+  "page_action": {
+    "browser_style": true,
+    "default_title": "Tag this on Fic.AI",
+    "default_popup": "popup/p.html",
+    "show_matches": ["https://forums.sufficientvelocity.com/threads/*"]
+  }
+}

@@ -1,0 +1,26 @@
+body {
+    padding: 1rem;
+}
+
+body.loggedin #loginform {
+    display: none;
+}
+body:not(.loggedin) #logoutform {
+    display: none;
+}
+body:not(.loggedin) #main {
+    display: none;
+}
+
+.sigForContainer {
+    color: green;
+}
+.sigAgainstContainer {
+    color: red;
+}
+.tag[data-signal="true"] .sigForContainer {
+    font-weight: bold;
+}
+.tag[data-signal="false"] .sigAgainstContainer {
+    font-weight: bold;
+}
