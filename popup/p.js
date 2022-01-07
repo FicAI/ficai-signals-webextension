@@ -37,6 +37,9 @@ async function patch(q) {
   const res = await fetch("http://localhost:8080/v1/signals", {
     method: 'PATCH',
     credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       url: tabUrl,
       ...q
@@ -66,7 +69,7 @@ function renderTag(tag) {
   for (const e of container.getElementsByClassName('sigAgainst')) {
     e.innerText = tag.signalsAgainst;
   }
-  container.dataset.signal = tag.signal.toString();
+  container.dataset.signal = '' + tag.signal;
 
   for (const e of container.getElementsByClassName('sigForContainer')) {
     e.addEventListener('click', () => {
