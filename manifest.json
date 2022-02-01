@@ -14,6 +14,13 @@
     "browser_style": true,
     "default_title": "Tag this on Fic.AI",
     "default_popup": "popup/p.html",
-    "show_matches": ["https://forums.sufficientvelocity.com/threads/*"]
+    "show_matches": [
+      "https://forums.sufficientvelocity.com/threads/*",
+      "https://forums.spacebattles.com/threads/*",
+      "https://forum.questionablequesting.com/threads/*",
+      "https://www.fanfiction.net/s/*",
+      "https://m.fanfiction.net/s/*",
+      "https://archiveofourown.org/works/*"
+    ]
   }
 }
