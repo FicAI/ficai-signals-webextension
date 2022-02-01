@@ -58,6 +58,7 @@ function renderTag(tag) {
   container.innerHTML = `<span class="tagName"></span>
 <span class="sigForContainer">for <span class="sigFor"></span></span>
 <span class="sigAgainstContainer">against <span class="sigAgainst"></span></span>
+<span class="sigEraseContainer"> (erase)</span>
 `;
 
   for (const e of container.getElementsByClassName('tagName')) {
@@ -79,6 +80,11 @@ function renderTag(tag) {
   for (const e of container.getElementsByClassName('sigAgainstContainer')) {
     e.addEventListener('click', () => {
       patch({rm: [tag.tag]}).then(reload);
+    });
+  }
+  for (const e of container.getElementsByClassName('sigEraseContainer')) {
+    e.addEventListener('click', () => {
+      patch({erase: [tag.tag]}).then(reload);
     });
   }
 
