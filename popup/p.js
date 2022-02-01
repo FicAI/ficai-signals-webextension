@@ -109,6 +109,27 @@ function onLoggedOut() {
   document.body.classList.remove('loggedin');
 }
 
+async function register() {
+  const res = await fetch("http://localhost:8080/v1/accounts", {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: loginform.email.value,
+      password: loginform.password.value,
+      betaKey: loginform.beta_key.value,
+    })
+  });
+  if (!res.ok) {
+    console.error(res);
+    // todo: show this in UI
+    throw 'failed to register';
+  }
+  onLoggedIn();
+}
+
 async function logIn() {
   const res = await fetch("http://localhost:8080/v1/sessions", {
     method: 'POST',
@@ -138,6 +159,7 @@ function logOut() {
 }
 
 loginform.btn.addEventListener('click', logIn);
+loginform.registerbtn.addEventListener('click', register);
 logoutform.btn.addEventListener('click', logOut);
 newform.btn.addEventListener('click', add);
 
