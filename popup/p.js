@@ -1,7 +1,7 @@
 "use strict";
 
 const CookieNameAndUrl = {
-  name: 'FicAiUid',
+  name: 'FicAiSession',
   // even when the server has a custom port, this string shouldn't specify it
   url: 'https://localhost/',
 };
@@ -109,23 +109,31 @@ function onLoggedOut() {
   document.body.classList.remove('loggedin');
 }
 
-function logIn() {
-  browser.cookies.set({
-    ...CookieNameAndUrl,
-    expirationDate: new Date().valueOf() / 1000 + 60 * 60 * 24 * 365 * 10,
-    httpOnly: true,
-    secure: true,
-    value: loginform.uid.value,
-  }).then(
-    onLoggedIn,
-    failure => console.error("Failed to set UID cookie", failure)
-  );
+async function logIn() {
+  const res = await fetch("http://localhost:8080/v1/sessions", {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: loginform.email.value,
+      password: loginform.password.value,
+    })
+  });
+  if (!res.ok) {
+    console.error(res);
+    // todo: show this in UI
+    throw 'failed to logIn';
+  }
+  onLoggedIn();
 }
 
 function logOut() {
+  // todo: actually logout from the server to prevent too many dangling sessions
   browser.cookies.remove(CookieNameAndUrl).then(
     onLoggedOut,
-    failure => console.error("Failed to remove UID cookie", failure)
+    failure => console.error("Failed to remove session cookie", failure)
   );
 }
 
