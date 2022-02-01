@@ -27,3 +27,7 @@ body:not(.loggedin) #new {
 .tag[data-signal="false"] .sigAgainstContainer {
     font-weight: bold;
 }
+
+.tag[data-signal="null"] .sigEraseContainer {
+    display: none;
+}
