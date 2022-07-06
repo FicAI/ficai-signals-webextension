@@ -13,3 +13,7 @@ clone without packing by following [Firefox] or [Chrome] specific instructions.
 
 [Firefox]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing
 [Chrome]: https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked
+
+## License
+
+ficai-signals-webextension is licensed under the [MIT](LICENSE) license.
